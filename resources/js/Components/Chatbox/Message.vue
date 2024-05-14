@@ -19,7 +19,7 @@ defineProps({
                         : 'text-red-500'
                 "
             >
-                <strong>{{ message.user.name }} | </strong>
+                <span>{{ message.user.name }} | </span>
             </div>
             <div role="alert" class="pl-4 italic">
                 {{ message.text }}

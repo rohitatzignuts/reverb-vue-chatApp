@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
-import Main from "../Components/Main.vue";
+import Main from "../Components/Chatbox/Main.vue";
 
 defineProps({
     user: Object,

@@ -6,6 +6,8 @@ const props = defineProps({
     rootUrl: String,
 });
 
+const emits = defineEmits(["fetchMessages"]);
+
 const message = ref("");
 
 const messageRequest = async (text) => {
@@ -22,6 +24,7 @@ const sendMessage = () => {
         return;
     }
     messageRequest(message.value);
+    emits("fetchMessages");
     message.value = "";
 };
 
@@ -34,11 +37,12 @@ const handleInput = (e) => {
     <div class="flex mt-6">
         <input
             v-model="message"
-            @input="handleInput"
             autocomplete="off"
             type="text"
             class="w-full rounded-l border-r-0"
             placeholder="Message..."
+            @input="handleInput"
+            @keyup.enter="sendMessage"
         />
         <div class="bg-indigo-500 rounded-r">
             <button @click="sendMessage" class="py-2 px-4 text-white">

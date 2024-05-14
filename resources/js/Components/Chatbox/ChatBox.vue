@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watchEffect } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import axios from "axios";
 import Message from "./Message.vue";
 import MessageInput from "./MessageInput.vue";
@@ -20,10 +20,7 @@ const scrollToBottom = () => {
 
 const connectWebSocket = () => {
     window.Echo.private(webSocketChannel).listen("GotMessage", async (e) => {
-        // Append the new message to the messages array
-        messages.value.push(e.message);
-        // Scroll to the bottom to show the new message
-        scrollToBottom();
+        getMessages();
     });
 };
 
@@ -63,7 +60,10 @@ onBeforeUnmount(() => {
                     <span ref="scroll"></span>
                 </div>
                 <div class="card-footer">
-                    <MessageInput :rootUrl="rootUrl" />
+                    <MessageInput
+                        :rootUrl="rootUrl"
+                        @fetch-messages="getMessages"
+                    />
                 </div>
             </div>
         </div>
