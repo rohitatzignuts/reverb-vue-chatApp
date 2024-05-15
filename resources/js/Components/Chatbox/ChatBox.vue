@@ -20,7 +20,8 @@ const scrollToBottom = () => {
 
 const connectWebSocket = () => {
     window.Echo.private(webSocketChannel).listen("GotMessage", async (e) => {
-        getMessages();
+        messages.value.push(e.message);
+        setTimeout(scrollToBottom, 0);
     });
 };
 

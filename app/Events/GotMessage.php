@@ -29,8 +29,11 @@ class GotMessage
      */
     public function broadcastOn(): array
     {
-        return [
-            new PrivateChannel('reverb-chat-app'),
-        ];
+        return [new PrivateChannel('channel_for_everyone')];
+    }
+
+    public function broadcastWith()
+    {
+        return ['message' => $this->message];
     }
 }

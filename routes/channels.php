@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Broadcast;
 
-Broadcast::channel('reverb-chat-app', function ($user) {
-    return true;
+Broadcast::channel('channel_for_everyone', function ($user) {
+    return Auth::check();
 });

@@ -19,19 +19,14 @@ class SendMessage implements ShouldQueue
      */
     public function __construct(public Message $message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle()
     {
-        GotMessage::dispatch([
-            'id' => $this->message->id,
-            'user_id' => $this->message->user_id,
-            'text' => $this->message->text,
-            'time' => $this->message->time,
-        ]);
+        event(new GotMessage($this->message));
     }
 }
