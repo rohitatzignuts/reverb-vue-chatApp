@@ -21,7 +21,7 @@ class HomeController extends Controller
             ->select(['id', 'name', 'email'])
             ->first();
 
-        return Inertia::render('Dashboard', [
+        return Inertia::render('Home', [
             'user' => $user,
         ]);
     }

@@ -19,9 +19,10 @@ const scrollToBottom = () => {
 };
 
 const connectWebSocket = () => {
-    window.Echo.private(webSocketChannel).listen("GotMessage", async (e) => {
-        messages.value.push(e.message);
-        setTimeout(scrollToBottom, 0);
+    Echo.private(webSocketChannel).listen("GotMessage", async (e) => {
+        // messages.value.push(e.message);
+        // setTimeout(scrollToBottom, 0);
+        await getMessages();
     });
 };
 
@@ -41,7 +42,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-    window.Echo.leave(webSocketChannel);
+    Echo.leave(webSocketChannel);
 });
 </script>
 
